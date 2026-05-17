@@ -209,7 +209,13 @@ body{{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background
 .theme-toggle{{width:52px;height:28px;border-radius:14px;background:var(--toggle-bg);border:none;cursor:pointer;position:relative;transition:background var(--transition-speed);flex-shrink:0;overflow:hidden}}
 .theme-toggle::after{{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:var(--toggle-knob);top:3px;left:3px;transition:transform var(--transition-speed);z-index:2}}
 [data-theme="light"] .theme-toggle::after{{transform:translateX(24px)}}
-.toggle-icons{{position:absolute;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 6px;font-size:0.55rem;top:50%;transform:translateY(-50%);pointer-events:none;z-index:1}}
+.toggle-icon{{position:absolute;top:50%;transform:translateY(-50%);font-size:0.75rem;pointer-events:none;z-index:1;transition:opacity var(--transition-speed);line-height:1}}
+.toggle-moon{{left:6px}}
+.toggle-sun{{right:5px}}
+[data-theme="dark"] .toggle-moon{{opacity:0}}
+[data-theme="dark"] .toggle-sun{{opacity:1}}
+[data-theme="light"] .toggle-moon{{opacity:1}}
+[data-theme="light"] .toggle-sun{{opacity:0}}
 /* === CATEGORY NAV (Tier 2) === */
 .cat-nav-wrapper{{position:sticky;top:50px;z-index:190;background:var(--bg-primary);border-bottom:1px solid var(--border);transition:background var(--transition-speed),border var(--transition-speed);display:flex;align-items:center;overflow:hidden}}
 .cat-nav{{display:flex;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex:1;padding:0 16px}}
@@ -259,11 +265,11 @@ p{{margin-bottom:12px}}strong{{font-weight:600;color:var(--text-primary)}}
 .overview-list li:hover{{background:var(--bg-code)}}
 .overview-num{{font-weight:700;color:var(--text-primary);min-width:28px}}
 /* === FORMULA MODAL === */
-.formula-modal{{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;padding:20px}}
+.formula-modal{{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:rgba(0,0,0,0.85);justify-content:center;padding:20px;overflow-y:auto}}
 .formula-modal.show{{display:flex}}
-.formula-modal-inner{{position:relative;max-width:700px;max-height:90vh;width:100%}}
-.formula-modal-inner img{{width:100%;height:auto;border-radius:8px;display:block;max-height:85vh;object-fit:contain}}
-.formula-close{{position:absolute;top:-14px;right:-14px;width:36px;height:36px;border-radius:50%;background:#ef4444;border:none;color:#fff;font-size:1.2rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.4);transition:transform 0.2s}}
+.formula-modal-inner{{position:relative;max-width:900px;width:100%;margin:auto}}
+.formula-modal-inner img{{width:100%;height:auto;border-radius:8px;display:block}}
+.formula-close{{position:sticky;top:0;float:right;margin-right:-18px;margin-top:-10px;width:36px;height:36px;border-radius:50%;background:#ef4444;border:none;color:#fff;font-size:1.2rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.4);transition:transform 0.2s;z-index:10}}
 .formula-close:hover{{transform:scale(1.1)}}
 @keyframes fadeIn{{from{{opacity:0;transform:translateY(5px)}}to{{opacity:1;transform:translateY(0)}}}}
 @media(max-width:640px){{
@@ -279,7 +285,7 @@ p{{margin-bottom:12px}}strong{{font-weight:600;color:var(--text-primary)}}
 .scroll-btn{{display:none}}
 .tab-btn{{padding:10px 14px;font-size:0.8rem}}
 .formula-modal-inner{{max-width:95vw}}
-.formula-close{{top:-10px;right:-10px;width:30px;height:30px;font-size:1rem}}
+.formula-close{{width:30px;height:30px;font-size:1rem;margin-right:-8px}}
 }}
 @media(max-width:380px){{
 .master-tab{{font-size:0.72rem;padding:5px 10px}}
@@ -291,7 +297,7 @@ p{{margin-bottom:12px}}strong{{font-weight:600;color:var(--text-primary)}}
 <!-- Tier 1: Top Nav -->
 <div class="top-level-nav">
 <div class="top-nav-left"><button class="master-tab">Math</button></div>
-<div class="top-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icons">🌙 ☀️</span></button></div>
+<div class="top-nav-right"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon toggle-moon">🌙</span><span class="toggle-icon toggle-sun">☀️</span></button></div>
 </div>
 <!-- Tier 2: Category Nav -->
 <div class="cat-nav-wrapper">
